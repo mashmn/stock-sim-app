@@ -1,0 +1,30 @@
+version: "3.1"
+services:
+  stock-sim-postgres:
+    container_name: "stock-sim-postgres"
+    image: postgres:14.5
+    # restart: always
+    environment:
+      - POSTGRES_PASSWORD=stocksim
+      - POSTGRES_USER=stocksim
+      # - POSTGRES_DB=stocksim
+    # ports:
+    #   - 5432:5432
+    # volumes: 
+    #   - data:/var/lib/postgresql/data
+  stock-sim-app:
+    container_name: stock-sim-app
+    image: stock-sim-app:1.0
+    build: 
+      context: ./
+    ports:
+      - 8084:8084
+    # links:
+    #   - stock-sim-postgres
+    depends_on:
+      - stock-sim-postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stock-sim-postgres:5432/stocksim
+      - SPRING_DATASOURCE_USERNAME=stocksim
+      - SPRING_DATASOURCE_PASSWORD=stocksim
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
