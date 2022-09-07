@@ -1,13 +1,16 @@
 package com.mahesh.stocksimapp.dto;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserGetDto {
+public class UserPortfolioPostDto {
     @JsonProperty("userId")
     private String userId;
 
@@ -22,4 +25,7 @@ public class UserGetDto {
 
     @JsonProperty("buyingPower")
     private Double buyingPower;
+
+    @JsonProperty("portfolios")
+    private List<PortfolioPostDto> portfolios;
 }

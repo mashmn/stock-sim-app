@@ -11,7 +11,7 @@ import com.mahesh.stocksimapp.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
+// @AllArgsConstructor
 @Service
 public class UserService {
 
@@ -19,8 +19,6 @@ public class UserService {
     private UserRepository userRepository;
 
     public User addOrUpdateUser(User user) {
-        user.getPortfolios().forEach(
-            portfolio -> portfolio.setTotalPrice(portfolio.getPricePerShare() * portfolio.getQuantity()));
         return userRepository.save(user);
     }
 
