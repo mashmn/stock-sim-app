@@ -1,5 +1,7 @@
 package com.mahesh.stocksimapp.dto;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
@@ -20,6 +22,10 @@ public class PortfolioPostDto {
     @JsonProperty("pricePerShare")
     private Double pricePerShare;
 
-    @JsonProperty("totalPrice")
-    private Double totalPrice;
+    public Double getTotalPrice() {
+        return ((Double) pricePerShare * quantity);
+    }
+
+    @JsonProperty("dateOfTrade")
+    private Date dateOfTrade;
 }
